@@ -4,26 +4,29 @@ import './calendar.css'
 
 class Calendar extends React.Component 
 {   constructor(){super()
-                  this.handleSelectTandarts=this.handleSelectTandarts.bind(this)  
+                  this.state = {dentist:"Toos"}
+                  this.handleChange=this.handleChange.bind(this)  
                  }
 
-    handleSelectTandarts()
-    {
-
+    handleChange(e)
+    { 
+      this.setState({dentist : e.target.value})
+       
+      e.preventDefault() 
     }
          
-    
     render()
     {
       const divideByDay = appointments => {
         const appointmentsByDay = {};
-        appointments.forEach(appointment => {
-          const day = appointment.day;
-          if (!appointmentsByDay.hasOwnProperty(day)) {
-            appointmentsByDay[day] = [];
-          }
-          appointmentsByDay[day].push(appointment);
-        });
+        appointments.forEach(appointment => {if ((appointment.dentist === this.state.dentist) && (this.state.dentist !== ""))
+                                            {
+                                              const day = appointment.day;
+                                              if (!appointmentsByDay.hasOwnProperty(day)) {
+                                                 appointmentsByDay[day] = [];
+                                                }
+                                              appointmentsByDay[day].push(appointment);}
+                                              });
         return appointmentsByDay;
       };
 
@@ -37,9 +40,15 @@ class Calendar extends React.Component
     
     return (
         <div>
-          <form onSubmit={this.handleSelectTandarts}> 
-              <label>Tandarts <input type="text" name="dentist"/></label>
-              <button>Kies een tandarts</button>
+          <form> 
+              <label>Tandarts
+                 <select onChange={this.handleChange}>
+                    <option value="Toos">Toos</option>
+                    <option value="Piet">Piet</option>
+                    <option value="Luc">Luc</option>
+                    <option value="Marjolein">Marjolein</option>
+                 </select> 
+              </label>
           </form>
           <div className="calendarview">
             <div className="header">

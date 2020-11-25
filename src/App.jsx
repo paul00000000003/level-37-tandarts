@@ -274,24 +274,16 @@ class App extends Component {
                   this.state={dentists :[],
                               assistenten : [],
                               patienten : [],
-                              appointments : [],
-                              dentist : ""
+                              appointments : []
                             }
-                    this.handleSelectTandarts=this.handleSelectTandarts.bind(this)
                   }
-    
-    handleSelectTandarts()
-    {
-
-
-    }
     
     componentDidMount()
     {
         //{this.addDentist("Toos", "Trekker", "06-12345678", "toos@tandartspraktijkbvt.nl")}
-        this.setState({dentists: dentistArray})
-        this.setState({assistenten : assistentenArray})
-        this.setState({patienten:patientenArray})
+        this.setState({dentists     : dentistArray})
+        this.setState({assistenten  : assistentenArray})
+        this.setState({patienten    : patientenArray})
         this.setState({appointments : appointments})
     }
     
@@ -301,6 +293,7 @@ class App extends Component {
         console.log("aantal tandartsen "+this.state.dentists.length)
         console.log("aantal assistenten "+this.state.assistenten.length)
         console.log("aantal patienten "+this.state.patienten.length)
+        console.log("aantal afspraken "+this.state.appointments)
         this.state.appointments.forEach(item =>console.log("dag :"+ item.day+"-time-"+item.time+"-patient-"+item.patient+"-tandarts- "+item.dentist+"-assistent- "+item.assistant))
         return (<Router>
             <div>
