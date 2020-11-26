@@ -6,6 +6,7 @@
 .dayview .appointment {
     border: 2px solid grey;
     width: 60%;
+    height: 180px;
     margin-bottom: 20px;
 }
 
@@ -28,4 +29,16 @@
 .dayview .dentist,
 .dayview .assistant {
     padding: 10px;
+}
+
+.dayview .knop {
+    height: 30px;
+    width: 100px;
+    margin: 10px;
+    margin-bottom: 30px;
+}
+
+.dayview .containerknop {
+    height: 40px;
+    width: 300px;
 }

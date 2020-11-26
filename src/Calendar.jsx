@@ -10,8 +10,7 @@ class Calendar extends React.Component
 
     handleChange(e)
     { 
-      this.setState({dentist : e.target.value})
-       
+      this.setState({dentist : e.target.value})  
       e.preventDefault() 
     }
          

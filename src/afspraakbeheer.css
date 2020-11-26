@@ -1,0 +1,10 @@
+.labelbreedte {
+  width: 150px;
+}
+
+.regelcontainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=afspraakbeheer.css.map */
