@@ -1,7 +1,28 @@
 .labelbreedte {
-    width: 150px;
+    width: 300px;
 }
 
 .regelcontainer {
+    width: 800px;
     display: flex;
+}
+
+.behandelingen {
+    display: flex;
+    width: 400px;
+}
+
+.labelPatientVoornaam {
+    width: 580px;
+}
+
+.toevoegButton {
+    width: 150px;
+    height: 80px;
+    font-size: 20px;
+    background: aqua;
+}
+
+.assistentLabel {
+    width: 300px;
 }

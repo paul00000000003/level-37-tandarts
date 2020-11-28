@@ -142,7 +142,7 @@ render()
                                            <button onClick={this.handleClickWijzigen}>Wijzig gegevens</button>
                                         </div>:<button onClick={this.handleClick}>Vraag dagschema op</button>}
               </form>
-              <ul className="dayview">{appointmentsJSX}</ul>;
+              <ul className="dayview">{appointmentsJSX}</ul>
            </div> 
          )
 }

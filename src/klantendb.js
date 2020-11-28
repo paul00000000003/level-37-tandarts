@@ -1013,9 +1013,9 @@ const addPatient = (firstName, surName, gender, telnr, email, year_of_birth, isS
         patientenArray.push({ firstName: firstName, surName: surName, gender: gender, telnr: telnr, email: email, year_of_birth: year_of_birth, isSick: isSick })
 }
 
-const addAppointment = (id, day, time, patient, dentist, assistent, treatment) => {
-    if (!appointments.includes({ id: id, day: day, time: time, patient: patient, dentist: dentist, assistent: assistent, treatment: treatment }))
-        appointments.push({ id: id, day: day, time: time, patient: patient, dentist: dentist, assistent: assistent, treatment: treatment })
+const addAppointment = (id, day, time, patient, dentist, assistant, treatment) => {
+    if (!appointments.includes({ id: id, day: day, time: time, patient: patient, dentist: dentist, assistant: assistant, treatment: treatment }))
+        appointments.push({ id: id, day: day, time: time, patient: patient, dentist: dentist, assistant: assistant, treatment: treatment })
 }
 
 //const appointments = generateRandomAppointments(70);

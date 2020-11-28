@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './app.css'
 import Home from './Home'
 import Day from './Day'
-import Contact from './Contact'
+import Ziekenbetermeldingen from './Ziekenbetermeldingen'
 import Afspraakbeheer from './Afspraakbeheer'
 import generateRandomAppointments from './klantendb'
 import {names,dentistArray, assistentenArray,patientenArray, appointments} from './klantendb'
@@ -14,7 +14,8 @@ class App extends Component {
                   this.state={dentists :[],
                               assistenten : [],
                               patienten : [],
-                              appointments : []
+                              appointments : [],
+                              zieken : []
                             }
                   }
     
@@ -35,8 +36,8 @@ class App extends Component {
             <li > < Link to = { '/' } className = "nav-link" >home</Link></li >
             <li > < Link to = {'./calendar'} >calendar</Link></li>
             <li > < Link to = { '/day' } className = "nav-link" > day </Link></li >
-            <li > < Link to = { '/contact' } className = "nav-link" > contact </Link></li >
-            <li > < Link to = { '/afspraakbeheer' } > afspraken  </Link></li >
+            <li > < Link to = { '/ziekenbetermeldingen' } className = "nav-link" > ziek/beter </Link></li >
+            <li > < Link to = { '/afspraakbeheer' } > nieuwe afspraken  </Link></li >
             </ul> 
             </nav > 
             <hr / >
@@ -53,8 +54,8 @@ class App extends Component {
             <Route path = '/afspraakbeheer' >
             <Afspraakbeheer {...this.state}/ >
             </Route>   
-            <Route path = '/contact' >
-            <Contact / >
+            <Route path = '/ziekenbetermeldingen' >
+            <Ziekenbetermeldingen appointments={appointments} dentists={dentistArray} patienten={patientenArray} assistenten={assistentenArray}/ >
             </Route>   
             </Switch > 
             </div> 
