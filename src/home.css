@@ -1,0 +1,10 @@
+.containers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.bijschrift {
+  margin: 40px;
+}
+/*# sourceMappingURL=home.css.map */
