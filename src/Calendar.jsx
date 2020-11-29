@@ -43,12 +43,19 @@ class Calendar extends React.Component
          
     render()
     { let dagen=[] 
-      //console.log("aantal elementen : "+this.props.appointments.length)
+      let appointmentsSorted=this.props.appointments.sort(function(a, b) {
+        let tijd1 = parseInt(a.time); // ignore upper and lowercase
+        let tijd2 = parseInt(b.time); // ignore upper and lowercase
+        if (tijd1 < tijd2) {
+           return -1;
+           }
+        if (tijd1 > tijd2) {
+           return 1;
+           }   
+        return 0;
+       });
       const divideByDay = appointments => {
         const appointmentsByDay = {};
-        let appointmentsMonth=[]
-        let appointmentsMonthAanvullen=[]
-      
         appointments.forEach(appointment => {if ((appointment.dentist === this.state.dentist) && (this.state.dentist !== ""))
                                             { console.log("afspraak "+appointment.dentist+" "+appointment.day)
                                               const day = appointment.day;
@@ -63,7 +70,7 @@ class Calendar extends React.Component
                                             });
         return appointmentsByDay;
       };
-      const appointmentsByDay = divideByDay(this.props.appointments);
+      const appointmentsByDay = divideByDay(appointmentsSorted);
       let eersteDag=dagen[0]
       let teller=0 
       let prevDay=0

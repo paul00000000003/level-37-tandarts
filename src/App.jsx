@@ -46,10 +46,10 @@ class App extends Component {
             <Home / >
             </Route>  
             <Route path = '/calendar' >
-            <Calendar appointments={appointments} / >
+            <Calendar appointments={appointments} dentists={dentistArray}/ >
             </Route>  
             <Route path = '/day' >
-            <Day appointments={appointments} / >
+            <Day appointments={appointments} dentists={dentistArray}/ >
             </Route> 
             <Route path = '/afspraakbeheer' >
             <Afspraakbeheer {...this.state}/ >

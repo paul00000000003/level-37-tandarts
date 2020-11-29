@@ -106,7 +106,18 @@ class Day extends React.Component {
 
 render()
 { let appointments2=this.state.appointments.filter(element => element.dentist === this.state.dentist && element.day==this.state.day)
-  const appointmentsJSX = appointments2.map(
+  let appointmentsSorted=appointments2.sort(function(a, b) {
+    let tijd1 = parseInt(a.time); // ignore upper and lowercase
+    let tijd2 = parseInt(b.time); // ignore upper and lowercase
+    if (tijd1 < tijd2) {
+       return -1;
+       }
+    if (tijd1 > tijd2) {
+       return 1;
+       }   
+    return 0;
+   });
+  const appointmentsJSX = appointmentsSorted.map(
     ({ time, patient, dentist, assistant }, index) => (
       <AppointmentInDay
         time={time}
@@ -115,6 +126,7 @@ render()
         assistant={assistant}
         afspraakWijzigen={this.afspraakWijzigen}
         afspraakVerwijderen={this.afspraakVerwijderen}
+        dentists={this.props.dentists}
         key={index}
       />
     )) 
