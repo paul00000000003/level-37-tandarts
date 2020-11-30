@@ -1,7 +1,33 @@
 import React from 'react'
 import "./ziekbeter.css"
 
+const verwerkZiekmelding=(medewerkersRel,firstName,surName,medewerkerGevonden,medewerkerIndex) =>
+      {
+       medewerkersRel.map((element,index) => {if ((element.firstName.toUpperCase()===firstName.toUpperCase()) && 
+                                                                (element.surName.toUpperCase()===surName.toUpperCase()))
+                                 {  element.isSick="J"
+                                    medewerkerGevonden="J"
+                                    medewerkerIndex=index
+                                 }
+                              return element})
+       return [medewerkerGevonden,medewerkerIndex]
+      }
 
+
+const verwijderAppointmentsPatienten= (appointments,firstName,surName,isZiek) => 
+{ let indices=[]
+  if (isZiek==="J")
+    {
+     let patientNaam=firstName.toUpperCase()+" "+surName.toUpperCase()
+     appointments.forEach((element,index) => {if (element.patient.toUpperCase()===patientNaam)
+                                                           indices.push(index)})
+     let verschuifstap=0 
+     indices.forEach(index => {appointments.splice(index-verschuifstap,1)
+                               verschuifstap=verschuifstap+1})
+    }
+  return indices 
+} 
+  
 class Ziekenbetermeldingen extends React.Component{
 
     constructor(){super()
@@ -30,62 +56,41 @@ class Ziekenbetermeldingen extends React.Component{
     {
         let soortPersoon=document.getElementById("soortPersoon").value
         let firstName=document.getElementById("firstName").value 
-        let surName=document.getElementById("surName").value  
+        let surName=document.getElementById("surName").value   
+        let persoonZiekmelding=null
+        let persoonGevonden=null
+        let persoonIndex=null
         let isZiek=this.state.isZiek
         this.setState({teVerwerken:true})
         //console.log("soort persoon : "+soortPersoon+" "+isZiek)
         e.preventDefault()
         switch (soortPersoon)
         {
-            case "patient"   :let patientGevonden="N"
-                              let patienten=this.props.patienten
-                              let patientIndex=0
-                              patienten=this.props.patienten.map((element,index) => {if ((element.firstName.toUpperCase()===firstName.toUpperCase()) && (element.surName.toUpperCase()===surName.toUpperCase()))
-                                                           {  element.isSick="J"
-                                                              patientGevonden="J"
-                                                              patientIndex=index
-                                                           }
-                                                        return element})
-                             
-                              if (patientGevonden !== "J")
+            case "patient"   :persoonZiekmelding=verwerkZiekmelding(this.props.patienten,firstName,surName,persoonGevonden,persoonIndex)
+                              persoonGevonden=persoonZiekmelding[0]
+                              persoonIndex=persoonZiekmelding[1]
+                              if (persoonGevonden !== "J")
                                  alert("Deze patient staat met deze voor- en achternaam niet in het systeem")
                               else
-                              {   this.props.patienten[patientIndex].isSick="J"
-                                  if (isZiek==="J")
-                                   {
-                                    let indices=[]
-                                    let patientNaam=firstName.toUpperCase()+" "+surName.toUpperCase()
-                                    console.log("patientNaam : "+patientNaam)
-                                    this.props.appointments.forEach((element,index) => {if (element.patient.toUpperCase()===patientNaam)
-                                                                                          indices.push(index)})
-                                    let verschuifstap=0 
-                                    indices.forEach(index => {this.props.appointments.splice(index-verschuifstap,1)
-                                                              verschuifstap=verschuifstap+1})
-                                    //this.props.appointments=appointments2
-                                    //this.setState({appointments : this.props.appointments})
-                                   }
-                              }
+                                if (isZiek==="J")
+                                   verwijderAppointmentsPatienten(this.props.appointments,firstName,surName,isZiek) 
                               break; 
-            case "assistant" :if (((firstName.toUpperCase() === "JAAP") && (surName.toUpperCase()==="DE BOER"))||
-                                  ((firstName.toUpperCase() === "MIES") && (surName.toUpperCase()==="BOERMANS")))
-                                   {
-                                      this.props.assistenten.map(element => {if ((element.firstName.toUpperCase()===firstName.toUpperCase()) && 
-                                                                      (element.surName.toUpperCase()===surName.toUpperCase()))
-                                                                        element.isSick=isZiek
-                                                                    return element})
-                                      this.setState({assistenten:this.props.assistenten})
-                                   }
-                              else alert("Er is geen assistent met deze voor- en achternaam ")
-                              break
-            case "dentist"   :let dentistGevonden="N"
-                              this.props.dentists.map(element => {if ((element.firstName === firstName)&&(element.surName===surName))
-                                                                    {dentistGevonden="J"
-                                                                     element.isSick=isZiek}})
-                              if (dentistGevonden==="J")
-                                 this.setState({dentists:this.props.dentists})
-                              else alert("Er is geen tandarts met deze voor- en achternaam")
-                              break  
-            case "default"  : alert("deze waarde verwacht ik niet")
+            case "assistant" :persoonZiekmelding=verwerkZiekmelding(this.props.assistenten,firstName,surName,persoonGevonden,persoonIndex)
+                               persoonGevonden=persoonZiekmelding[0]
+                               persoonIndex=persoonZiekmelding[1]
+                               if (persoonGevonden==='N')
+                                  alert("Er is geen assistent met deze voor en achternaam")
+                               else this.setState({assistenten:this.props.assistenten}) 
+                               break
+             case "dentist"   :persoonZiekmelding=verwerkZiekmelding(this.props.dentists,firstName,surName,persoonGevonden,persoonIndex)
+                               persoonGevonden=persoonZiekmelding[0]
+                               persoonIndex=persoonZiekmelding[1]
+                               if (persoonGevonden==="N")
+                                 alert("Er is geen tandarts met deze voor- en achternaam")
+                               else this.setState({dentists:this.props.dentists})
+                                
+                               break  
+             case "default"  : alert("deze waarde verwacht ik niet")
         }        
        setTimeout(()=> {
            this.setState({teVerwerken: false})

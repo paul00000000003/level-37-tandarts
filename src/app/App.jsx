@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './app.css'
-import Home from './Home'
-import Day from './Day'
-import Ziekenbetermeldingen from './Ziekenbetermeldingen'
-import Afspraakbeheer from './Afspraakbeheer'
-import generateRandomAppointments from './klantendb'
-import {names,dentistArray, assistentenArray,patientenArray, appointments} from './klantendb'
-import Calendar from './Calendar' 
+import Home from '../home/Home'
+import Day from '../day/Day'
+import Ziekenbetermeldingen from '../ziekenbetermeldingen/Ziekenbetermeldingen'
+import Afspraakbeheer from '../afspraakbeheer/Afspraakbeheer'
+import {dentistArray, assistentenArray,patientenArray, appointments} from '../klantendb'
+import Calendar from '../calendar/Calendar' 
 
 class App extends Component {
     constructor(){super()
