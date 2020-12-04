@@ -191,8 +191,8 @@ class Day extends React.Component {
           Gebruik voor het toevoegen van een afspraak de afspraakoptie. Je kunt
           hier alleen verwijderen en wijzigen
         </h3>
-        <form>
-          <label>
+        <form className="dagquery">
+          <label className="tandartslabel">
             Tandarts
             <select onChange={this.handleChange}>{dentistsMapped}</select>
           </label>
@@ -216,7 +216,7 @@ class Day extends React.Component {
               </button>
             </div>
           ) : (
-            <div>
+            <div className="inputcontainer">
               <label>
                 dag <input id="day" type="number" name="day" min="1" max="28" />{" "}
               </label>
