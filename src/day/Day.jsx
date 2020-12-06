@@ -21,9 +21,9 @@ const rangschikOpTijdStip = (rel) =>
 const zoekOudRecord = (appointments, day, dentist, time) => {
   appointments.forEach((element, index) => {
     if (
-      element.day == day &&
+      parseInt(element.day) === parseInt(day) &&
       element.dentist === dentist &&
-      element.time == time
+      parseInt(element.time) === parseInt(time)
     ) {
       indexOud = index;
       idOud = element.id;
@@ -143,7 +143,7 @@ class Day extends React.Component {
       }
     });
     if (gevonden === "J")
-      verwijderRecord = (this.props.appointments, teVerwijderenId);
+      verwijderRecord(this.props.appointments, teVerwijderenId);
     this.setState({ appointments: this.props.appointments });
   }
 
@@ -163,7 +163,8 @@ class Day extends React.Component {
   render() {
     let appointments2 = this.state.appointments.filter(
       (element) =>
-        element.dentist === this.state.dentist && element.day == this.state.day
+        element.dentist === this.state.dentist &&
+        parseInt(element.day) === parseInt(this.state.day)
     );
     let appointmentsSorted = rangschikOpTijdStip(appointments2);
 
