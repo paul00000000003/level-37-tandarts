@@ -995,8 +995,6 @@ let dentistArray = []
 let assistentenArray = []
 let patientenArray = []
 let appointments = []
-let max_time = 19
-let min_time = 7
 
 const addDentist = (firstName, surName, telnr, email, isSick) => {
     if (!dentistArray.includes({ firstName: firstName, surName: surName, telnr: telnr, email: email, isSick: isSick }))
@@ -1289,4 +1287,4 @@ const generateRandomAppointments = num =>
 
 
 export default generateRandomAppointments
-export { names, dentistArray, assistentenArray, patientenArray, appointments, }
+export { dentistArray, assistentenArray, patientenArray, appointments, }

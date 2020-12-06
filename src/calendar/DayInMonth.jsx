@@ -3,10 +3,9 @@ import AppointmentInMonth from "./AppointmentInMonth";
 
 class DaysInMonth extends React.Component {
   render() {
-    let dagen = [];
     let appointments_month = this.props.appointments.sort();
 
-    const appointmentsJSX = this.props.appointments.map(
+    const appointmentsJSX = appointments_month.map(
       ({ time, patient, day }, index) => (
         <AppointmentInMonth
           time={time}
