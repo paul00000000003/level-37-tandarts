@@ -69,6 +69,7 @@ class Day extends React.Component {
   }
 
   handleChange(e) {
+    console.log("binnen de state voor tandarts");
     this.setState({ dentist: e.target.value, wijzigen: false });
     e.preventDefault();
   }
@@ -193,12 +194,9 @@ class Day extends React.Component {
           hier alleen verwijderen en wijzigen
         </h3>
         <form className="dagquery">
-          <label className="tandartslabel">
-            Tandarts
-            <select onChange={this.handleChange}>{dentistsMapped}</select>
-          </label>
           {this.state.wijzigen ? (
             <div>
+              <label>tandarts : {this.state.dentist}</label><br/> 
               <label>dag {this.state.day} </label>
               <p>tijdstip : {this.state.time}</p>
               <p>patient : {this.state.patient}</p>
@@ -218,6 +216,10 @@ class Day extends React.Component {
             </div>
           ) : (
             <div className="inputcontainer">
+              <label className="tandartslabel">
+                Tandarts
+                <select onChange={this.handleChange}>{dentistsMapped}</select>
+              </label>
               <label>
                 dag <input id="day" type="number" name="day" min="1" max="28" />{" "}
               </label>

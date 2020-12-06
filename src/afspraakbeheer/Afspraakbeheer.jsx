@@ -86,8 +86,8 @@ class Afspraakbeheer extends React.Component {
           this.props.appointments.forEach((element) => {
             if (
               element.dentist === dentist &&
-              element.time == time &&
-              element.day == day
+              parseInt(element.time) === parseInt(time) &&
+              parseInt(element.day) === parseInt(day)
             )
               alAfspraakIngepland = "J";
             if (element.id > id) id = element.id;
